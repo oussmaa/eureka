@@ -27,7 +27,7 @@ jobs:
         run: docker builder prune -a -f
 
       - name: Build Docker image
-        run: docker build -t ooussama020899/eureka --no-cache .
+        run: docker build -t oussama020899/eureka --no-cache .
 
       - name: Publish image to Docker Hub
         run: docker push oussama020899/eureka:latest
