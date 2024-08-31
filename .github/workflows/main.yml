@@ -32,20 +32,3 @@ jobs:
       - name: Publish image to Docker Hub
         run: docker push oussama020899/eureka:latest
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: SSH to OVH Server
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.OVH_SERVER_HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.OVH_SERVER_PASSWORD }}
-          port: ${{ secrets.OVH_SERVER_PORT }}
-          script: |
-           sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-           sudo docker pull oussama020899/eureka:latest
-           sudo docker stop oussama020899/eureka || true
-           sudo docker rm eureka || true
-           sudo docker run -d --name eureka -p 8761:8761 oussama020899/eureka:latest
