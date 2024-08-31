@@ -48,4 +48,4 @@ jobs:
            sudo docker pull oussama020899/eureka:latest
            sudo docker stop oussama020899/eureka || true
            sudo docker rm eureka || true
-           sudo docker run -d --name eureka -p 9091:9091 oussama020899/eureka:latest
+           sudo docker run -d --name eureka -p 8761:8761 oussama020899/eureka:latest
